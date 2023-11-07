@@ -9,7 +9,9 @@ from aiogram.types import Message
 from aiogram.utils.markdown import hbold
 from aiogram.enums import ParseMode
 
-TOKEN = getenv("ERBAUER_BOT_TOKEN")
+bot_token  = getenv("ERBAUER_BOT_TOKEN")
+if not bot_token :
+    exit("Error: no token provided")
 
 # Инициализируем диспетчер
 dp = Dispatcher()
@@ -25,7 +27,7 @@ async def command_start_handler(message: Message) -> None:
         "Привет! Я твой телеграм-бот. Чтобы начать, просто напиши мне что-нибудь.")
 
 
-# Обработчик текстовых сообщений
+# Обработчик текстовых сообщений "привет" (регистр не имеет значения)
 @dp.message(lambda message: message.text.lower() == 'привет')
 async def greet(message: types.Message):
     """
@@ -44,7 +46,7 @@ async def echo_handler(message: types.Message) -> None:
 
 
 async def main() -> None:
-    bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+    bot = Bot(bot_token, parse_mode=ParseMode.HTML)
     await dp.start_polling(bot)
     
     
