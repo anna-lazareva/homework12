@@ -9,8 +9,8 @@ from aiogram.types import Message
 from aiogram.utils.markdown import hbold
 from aiogram.enums import ParseMode
 
-bot_token  = getenv("ERBAUER_BOT_TOKEN")
-if not bot_token :
+bot_token = getenv("ERBAUER_BOT_TOKEN")
+if not bot_token:
     exit("Error: no token provided")
 
 # Инициализируем диспетчер
